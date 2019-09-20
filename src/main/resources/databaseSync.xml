@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--同步XML-->
+<database url="jdbc:sqlserver://192.168.1.172:1433;DatabaseName=testSync" username="sa" password="root">
+    #operationtimecolumn 第三方更改时间字段  yourupdatecolumnflag 增量更新时间字段名称
+    #incrementalflag 增量更新标志
+    #注意不可包含空格
+    #替换位置 前缀，所有，后缀 去重信息来源于 表或者枚举
+    #过滤规则 去重 用其他字段代替重复的列
+    #postmethod 后置方法（执行同步后需要自动执行的方法名） fullclassname 方法所在的全类名 PS:目前仅支持无参方法
+    <!--parameterissql参数是否为sql tripartitetablename需要的三方表名称 targetcolumn目标字段-->
+    <!-- <table localname="localtable" remotename="remotetable" searchcolumns="" parameterissql="true"
+            tripartitetablename="db_owner.SCHOOL" targetcolumn="XXDM" tripartitetablesearchcolumn="XZQHM"
+            tripartitetableparameter="AreaCode" searchparameters=""
+            operationtimecolumn="updatetime" postmethod="afterSync"
+            fullclassname="cn.chinesestar.educator.common.dataSync.AfterDataSync">
+         #关联字段 从关联表获取
+         &lt;!&ndash;sourcetablename 来源于哪张表&ndash;&gt;
+         <column localcolumn="localname" remotecolumn="remotename" type="String" isreplace="true"
+                 replaceposition="prefix/*/suffix" replacefrom="fromenum/fromtable" sourcetablename="" isfilter="true"
+                 filterrule="deduplication" filterfrom="system_user_teacher" unique="true"/>
+
+         <column localcolumn="localage" remotecolumn="remoteage" type="int" isreplace="" replaceposition="" filterrule=""
+                 unique=""/>
+         <column localcolumn="localsex" remotecolumn="remotesex" type="int" isreplace="" replaceposition="" filterrule=""
+                 unique=""/>
+         <column localcolumn="localhobbit" remotecolumn="remotehobbit" type="String" isreplace="" replaceposition=""
+                 filterrule="" unique=""/>
+         <column localcolumn="updatetime" remotecolumn="updatetime" type="Date" isreplace="" replaceposition=""
+                 filterrule=""
+                 unique=""/>
+         #由内部表获取 如userID
+         <column localcolumn="user_id" remotecolumn="id" type="obtainedbyinternaltable" isreplace="" replaceposition=""
+                 filterrule=""
+         />
+     </table>-->
+
+    <table localname="localtable" remotename="remotetable" searchcolumns="" parameterissql="false"
+           tripartitetablename="remotetable" targetcolumn="" tripartitetablesearchcolumn=""
+           tripartitetableparameter="" searchparameters=""
+           operationtimecolumn="updatetime" yourupdatecolumnflag="operation_date" incrementalflag="operation_type" postmethod="afterSync"
+           fullclassname="cn.chinesestar.educator.common.dataSync.AfterDataSync">
+        #关联字段 从关联表获取
+        <!--sourcetablename 来源于哪张表-->
+        <column localcolumn="localname" remotecolumn="remotename" type="String" isreplace="true"
+                replaceposition="prefix/*/suffix" replacefrom="fromenum/fromtable" sourcetablename="" isfilter="true"
+                filterrule="deduplication" filterfrom="system_user_teacher" />
+
+        <column localcolumn="localage" remotecolumn="remoteage" type="int" isreplace="" replaceposition="" filterrule=""
+                unique=""/>
+        <column localcolumn="localsex" remotecolumn="remotesex" type="int" isreplace="" replaceposition="" filterrule=""
+                unique=""/>
+        <column localcolumn="localhobbit" remotecolumn="remotehobbit" type="String" isreplace="" replaceposition=""
+                filterrule="" unique=""/>
+        <column localcolumn="updatetime" remotecolumn="updatetime" type="Date" isreplace="" replaceposition=""
+                filterrule=""
+                unique=""/>
+        #由内部表获取 如userID
+        <column localcolumn="user_id" remotecolumn="id" type="obtainedbyinternaltable" isreplace="" replaceposition=""
+                filterrule=""
+        />
+    </table>
+</database>

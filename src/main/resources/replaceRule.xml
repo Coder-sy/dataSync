@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--全局替换规则XML-->
+<replacerule>
+<!--由枚举替换-->
+    <fromenum column="">
+        <enum key="共青团员">1</enum>>
+        <enum key="少先队">3</enum>>
+        <enum key="other">0</enum>>
+    </fromenum>
+    <!--sourcetable 来源于哪张表 name具体目标字段  correspondingfield 和第三方字段对应的具体字段  correspondingparameter参数-->
+    <fromtable sourcetable="system_code" sourcecolumn="name" correspondingcolumn="code"></fromtable>
+</replacerule>

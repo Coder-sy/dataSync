@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filterrule>
+    <ruledetail key="duplication">
+        <replacefromcolumn tablename="system_user_teacher" replacecolumn="GH" filtercolumn="email,phone"/>
+        <replacefromcolumn tablename="system_user_student" replacecolumn="XJH" filtercolumn="email,mobile_phone,id_number"/>
+    </ruledetail>
+</filterrule>
