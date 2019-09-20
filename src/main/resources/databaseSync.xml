@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--同步XML-->
-<database url="jdbc:sqlserver://192.168.1.172:1433;DatabaseName=testSync" username="sa" password="root">
+<database url="jdbc:sqlserver://您的sqlserver数据库ip:1433;DatabaseName=testSync" username="sa" password="root">
     #operationtimecolumn 第三方更改时间字段  yourupdatecolumnflag 增量更新时间字段名称
     #incrementalflag 增量更新标志
     #注意不可包含空格
