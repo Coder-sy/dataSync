@@ -49,9 +49,7 @@ public class DataSyncRuleEngine {
 
         String localTableName = child.getAttributeValue("localname");
 
-        //Element element = getUniqueColumn(children);
-
-
+    
         StringBuilder saveOrUpdateSqls = new StringBuilder("insert into " + localTableName + "(");
 
         Set<String> columns = getAllColumns(children);
@@ -67,17 +65,12 @@ public class DataSyncRuleEngine {
 
 
         while (resultSet.next()) {
-            //根据唯一字段判断本系统是否存在该数据
-            //if (element != null) {
-                /*StringBuilder querySql = new StringBuilder();
-                querySql.append("select count(*) from ").append(localTableName).append(" where ").append(element.getAttributeValue("localcolumn")).append(" = ");
-                appendSql(querySql, element.getAttributeValue("type"), resultSet, element);
-            */
+           
             saveOrUpdateSqls.append(" (");
 
             //拼接数据批量更新语句
             appendExecSql(children, saveOrUpdateSqls);
-            //}
+          
         }
 
         String[] split = localColumns.toString().split(",");
@@ -174,19 +167,7 @@ public class DataSyncRuleEngine {
                 replaceOrFilter(element, querySql);
                 break;
 
-        /*    //性别列处理
-            case "sex":
-                String remoteColumn = resultSet.getString(element.getAttributeValue("remotecolumn"));
-                if (remoteColumn.equals("1")) {
-                    querySql.append("'").append("1").append("'");
-                } else if (remoteColumn.equals("2")) {
-                    querySql.append("'").append("0").append("'");
-                } else {
-                    querySql.append("'").append("2").append("'");
-                }
-                replaceOrFilter(element, querySql);
-                break;*/
-
+       
             default:
                 //默认为密码字段   密码为123456
                 querySql.append("'").append("123456").append("'");
@@ -201,8 +182,7 @@ public class DataSyncRuleEngine {
      * @param element  列具体信息
      * @param querySql 拼接sql语句
      */
-    ///TODO 根据xml配置去解析替换或者去重xml下找同名的xml标签  根据标签内容进行具体的替换或者去重
-    ///TODO 关联表同步问题  学生 教师->用户  根据关联字段去关联表查询
+   
     private void replaceOrFilter(Element element, StringBuilder querySql) throws Exception {
 
         DataSyncReplaceOrFilterRule dataSyncReplaceOrFilterRule = new DataSyncReplaceOrFilterRule(querySql.toString(), element, resultSet, jdbcTemplate);
@@ -218,17 +198,6 @@ public class DataSyncRuleEngine {
             dataSyncReplaceOrFilterRule.filter(filterPath);
         }
 
-        /**
-         * 获取标识列
-         */
-  /*  private Element getUniqueColumn(List<Element> children) {
-
-        List<Element> first = children.stream().filter(item -> item.getAttributeValue("unique").equals("true")).collect(Collectors.toList());
-        if (!first.isEmpty()) {
-            return first.get(0);
-        }
-
-        return null;
-    }*/
+      
     }
 }

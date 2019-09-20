@@ -43,8 +43,7 @@ public class DataSyncUtil {
 
         long l = System.currentTimeMillis();
         try {
-            //dataSyncPath
-            //String path = System.getProperty("user.dir") + "/src/main/resources/databaseSync.xml";
+         
             Document document = getDocument(dataSyncDto.getDataSyncPath());
             //获取顶级节点
             Element database = document.getRootElement();
@@ -115,7 +114,7 @@ public class DataSyncUtil {
                         String sql = " select " + yourUpdatecolumnFlag + " from " + child.getAttributeValue("localname") + " WHERE " + incrementalFlag + " IS NOT NULL ORDER BY " + yourUpdatecolumnFlag + " DESC LIMIT 1";
                         List<Date> operationDate = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Date>(Date.class));
 
-                        //Date operationDate = databaseSyncMapper.findFirstfindFirstByOperationTypeNotNullOrderByOperationDateDesc(child.getAttributeValue("localname"));
+                        
                         String operationTimeColumn = child.getAttributeValue("operationtimecolumn");
                         StringBuilder stringBuilder = new StringBuilder();
                         //sqlServer  mysql不支持rowID
